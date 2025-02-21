@@ -1,4 +1,4 @@
-# Rapid-cloning-of-Yr6
+# Rapid Cloning of *Yr6*
 
 This repository shows a modified pipeline inspired by [MutChromSeq](https://github.com/steuernb/MutChromSeq/) which was used for rapid cloning of strip rust resistant locus *Yr6* based on RNA-seq data of EMS-mutagenized mutants.
 
@@ -40,7 +40,7 @@ Here's the parameters of the script.
 | -p | Length of overlap, default is 5000. |
 | -t | Offset of the first interval, default is 0. |
 | -f | File of a list of chromosomes to process parallelly. Choromesomes not mentioned will be deprecated. |
-| -j | Number of blocks to be processed parallely. Default is 1 (with out parallely processing). |
+| -j | Number of blocks to be processed parallely. Default is 1 (with no parallely processing). |
 
 ## MutCandidator
 
@@ -66,43 +66,43 @@ Here's the parameters of the script.
 
 The script will first filter the SNPs based on parameters `c`, `a`, `z`, and `m`, and then outputs a filtered vcf file named *SNP.chop.vcf.a0.3c10z2.filter.vcf* in which the excluded sites are denoted as `.`. This process may take tens of minutes. Note that the filename represents the parameters given. If this filtered vcf file is absent (e.g. you changed parameter `a`), the script will regenerate it; otherwise, the script will read the existing file and identify the candidate segments based on the parameter `n`, which will be very fast. The candidates will be reported in a file named *SNP.chop.vcf.n10a0.3c10z2.s.report.txt*
 
-In our study, the reports says:
+In our study, the report says:
 
 ```
 Candidate contig: LR865758.1_707445000
 10 mutants
-	TW4-4.dedup.bam:
+	M4.dedup.bam:
 		Pos: 12639	G->A	depth: 15
 		Pos: 38707	G->A	depth: 705
 
-	TW4-2.dedup.bam:
+	M2.dedup.bam:
 		Pos: 23997	C->T	depth: 208
 		Pos: 38522	C->T	depth: 278
 
-	TW4-14A.dedup.bam:
+	M8.dedup.bam:
 		Pos: 24503	G->A/G	depth: 117/1
 
-	TW4-8.dedup.bam:
+	M6.dedup.bam:
 		Pos: 24667	C->T	depth: 112
 
-	TW4-3.dedup.bam:
+	M3.dedup.bam:
 		Pos: 25157	C->T	depth: 193
 
-	TW4-1.dedup.bam:
+	M1.dedup.bam:
 		Pos: 40206	C->T	depth: 324
 
-	TW4-5.dedup.bam:
+	M5.dedup.bam:
 		Pos: 40914	C->T	depth: 685
 
-	TW4-10A.dedup.bam:
+	M7.dedup.bam:
 		Pos: 40993	G->A/G	depth: 168/1
 
-	TW4-19A.dedup.bam:
+	M9.dedup.bam:
 		Pos: 41093	C->T	depth: 353
 
-	T2W4-6-LGM26650_L1.dedup.bam:
+	M10.dedup.bam:
 		Pos: 41946	G->A	depth: 373
 ```
 
-The reports tells you the candidate segment and the information of SNP sites. The name of the segment `LR865758.1_707445000` indicates that it is a segment starting from the 707,445,001st base on chromosome LR865758.1 (chr7B), and the positions of each SNP locus are calculated relative to the corresponding segment. That is, the position of a SNP site on the chromosome should be $\text{Pos} + 707445000$.
+The report tells you the candidate segment and the information of SNP sites. The name of the segment `LR865758.1_707445000` indicates that it is a segment starting from the 707,445,001st base on chromosome LR865758.1 (chr7B), and the positions of each SNP locus are calculated relative to the corresponding segment. That is, the position of a SNP site on the chromosome should be $\text{Pos} + 707445000$.
 
