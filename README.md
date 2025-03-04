@@ -17,14 +17,14 @@ minipileup -f stanley.fa -vc <path/to/samples.bam> | \
 ```
 **Note :** We did not utilize variant calling tools such as GATK, in order to minimize the introduction of false negatives due to hard filtering. The false positives resulting from this can be overcome through mutual validation among independent mutants.
 
-## Vcf file chopping
+## VCF file chopping
 
-Inheriting the core concept of methods such as MutChromSeq, when mutations from multiple independent mutants converge on the same gene, transcript, or genomic segment, it indicates an association/cosegregation of the gene with the mutant phenotype (i.e. stripe rust susceptibility). However, the probability of non-associated mutation sites enriching on the same ginomic segment increases with the length of the segment. We developed the python script, `vcfChopperMultipler.v2.py`, to "chop" the chromosomes in the vcf file into overlapping segments for subsequent analysis.
+Inheriting the core concept of methods such as MutChromSeq, when mutations from multiple independent mutants converge on the same gene, transcript, or genomic segment, it indicates an association/cosegregation of the gene with the mutant phenotype (i.e. stripe rust susceptibility). However, the probability of non-associated mutation sites enriching on the same ginomic segment increases with the length of the segment. We developed the python script, `vcfChopperMultipler.py`, to "chop" the chromosomes in the VCF file into overlapping segments for subsequent analysis.
 
 **Note:** `pysam` is required by this script.
 
 ```bash
-python vcfChopperMultipler.v2.py \
+python vcfChopperMultipler.py \
 	-i SNP.sort.vcf.gz -j 40 \
     > SNP.chop.vcf
 ```
@@ -44,10 +44,10 @@ Here's the parameters of the script.
 
 ## MutCandidator
 
-We developed the python script, `MutCandidator.v3.py`, to filter and compare the SNP sites among mutants and finally identify the ginomic segment carrying the candidate resistant gene.
+We developed the python script, `MutCandidator.py`, to filter and compare the SNP sites among mutants and finally identify the genomic segment carrying the candidate resistant gene.
 
 ```bash
-python MutCandidator.v3.py -i SNP.chop.vcf -n 10 -a 0.3 -s
+python MutCandidator.py -i SNP.chop.vcf -n 10 -a 0.3 -s
 ```
 
 Here's the parameters of the script.
@@ -104,5 +104,5 @@ Candidate contig: LR865758.1_707445000
 		Pos: 41946	G->A	depth: 373
 ```
 
-The report tells you the candidate segment and the information of SNP sites. The name of the segment `LR865758.1_707445000` indicates that it is a segment starting from the 707,445,001st base on chromosome LR865758.1 (chr7B), and the positions of each SNP locus are calculated relative to the corresponding segment. That is, the position of a SNP site on the chromosome should be $\text{Pos} + 707445000$.
+The report tells you the candidate segment and information of SNP sites. The name of the segment `LR865758.1_707445000` indicates that it is a segment starting from the 707,445,001st base on chromosome LR865758.1 (chr7B), and the positions of each SNP locus are calculated relative to the corresponding segment. That is, the position of an SNP site on the chromosome should be $\text{Pos} + 707445000$.
 
