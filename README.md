@@ -19,12 +19,12 @@ minipileup -f stanley.fa -vc <path/to/samples.bam> | \
 
 ## VCF file chopping
 
-Inheriting the core concept of methods such as MutChromSeq, when mutations from multiple independent mutants converge on the same gene, transcript, or genomic segment, it indicates an association/cosegregation of the gene with the mutant phenotype (i.e. stripe rust susceptibility). However, the probability of non-associated mutation sites enriching on the same ginomic segment increases with the length of the segment. We developed the python script, `vcfChopperMultipler.py`, to "chop" the chromosomes in the VCF file into overlapping segments for subsequent analysis.
+Inheriting the core concept of methods such as MutChromSeq, when mutations from multiple independent mutants converge on the same gene, transcript, or genomic segment, it indicates an association/cosegregation of the gene with the mutant phenotype (i.e. stripe rust susceptibility). However, the probability of non-associated mutation sites enriching on the same ginomic segment increases with the length of the segment. We developed the python script, `vcfChopper.py`, to "chop" the chromosomes in the VCF file into overlapping segments for subsequent analysis.
 
 **Note:** `pysam` is required by this script.
 
 ```bash
-python vcfChopperMultipler.py \
+python vcfChopper.py \
 	-i SNP.sort.vcf.gz -j 40 \
     > SNP.chop.vcf
 ```
