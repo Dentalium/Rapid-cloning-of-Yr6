@@ -1,7 +1,7 @@
 #!/usr/bin/env/ python3
 #coding=utf-8
 '''
-v2
+vcfChopperMultiplerv2
 python=3.12.2
 pysam=0.22.1
 '''
